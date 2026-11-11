@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #eef1ff;
+  --color-brand-100: #dfe5ff;
+  --color-brand-200: #c3ccff;
+  --color-brand-500: #4157ff;
+  --color-brand-600: #2932e1;
+  --color-brand-700: #1f27b5;
+  --color-ink-900: #0f172a;
+  --color-ink-700: #334155;
+  --color-ink-500: #64748b;
+  --color-line: #e6ebf4;
+  --font-sans: -apple-system, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial,
+    sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: #f4f6fb;
+  color: #0f172a;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: #c3ccff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: fadeUp 0.35s ease both;
+}
+
+@keyframes pulseSoft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #eef2f9 25%, #e3e9f4 37%, #eef2f9 63%);
+  background-size: 400% 100%;
+  animation: skeleton 1.4s ease infinite;
+}
+
+@keyframes skeleton {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e6ebf4;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.input-base {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #dbe3ef;
+  background: #fff;
+  padding: 9px 12px;
+  font-size: 13px;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.input-base:focus {
+  border-color: #4157ff;
+  box-shadow: 0 0 0 3px rgba(65, 87, 255, 0.12);
+}
+
+.btn-primary {
+  background: #2932e1;
+  color: #fff;
+  border-radius: 10px;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+.btn-primary:hover {
+  background: #1f27b5;
+}
+.btn-primary:disabled {
+  background: #a9b1e8;
+  cursor: not-allowed;
+}
