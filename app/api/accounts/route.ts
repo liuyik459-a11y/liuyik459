@@ -74,5 +74,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "参数错误" }, { status: 400 });
   }
   const result = await getBaiduAdapter().syncAccount(body.accountId);
+  if (!result.ok) {
+    return NextResponse.json(
+      { error: result.message || "同步失败：请检查接入设置与授权状态" },
+      { status: 502 }
+    );
+  }
   return NextResponse.json({ data: result });
 }

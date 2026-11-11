@@ -106,6 +106,12 @@ CREATE TABLE IF NOT EXISTS logs (
   operator TEXT NOT NULL,
   created_at TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS settings (
+  key TEXT PRIMARY KEY,
+  value TEXT NOT NULL,
+  updated_at TEXT NOT NULL
+);
 `;
 
 export function getDb(): DatabaseSync {
@@ -117,6 +123,8 @@ export function getDb(): DatabaseSync {
   const db = new DatabaseSync(path.join(dir, "app.db"));
   db.exec("PRAGMA journal_mode = WAL;");
   db.exec(SCHEMA);
+  ensureColumn(db, "plans", "baidu_id", "TEXT");
+  ensureColumn(db, "plans", "baidu_adgroup_id", "TEXT");
 
   const row = db.prepare("SELECT COUNT(*) AS c FROM accounts").get() as { c: number };
   if (!row || Number(row.c) === 0) {
@@ -125,6 +133,13 @@ export function getDb(): DatabaseSync {
 
   globalThis.__feedAdsDb = db;
   return db;
+}
+
+function ensureColumn(db: DatabaseSync, table: string, column: string, type: string): void {
+  const cols = db.prepare(`PRAGMA table_info(${table})`).all() as unknown as Array<{ name: string }>;
+  if (!cols.some((c) => c.name === column)) {
+    db.exec(`ALTER TABLE ${table} ADD COLUMN ${column} ${type}`);
+  }
 }
 
 export function addLog(

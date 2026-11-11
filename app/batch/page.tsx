@@ -17,6 +17,7 @@ const TARGETING_PRESETS = [
 
 interface TaskItem extends BatchTask {
   accountNames: string[];
+  failures?: string[];
 }
 
 export default function BatchPage() {
@@ -103,6 +104,9 @@ export default function BatchPage() {
     setNotice(
       `任务「${name}」已提交：${json.data?.accountNames.length ?? 0} 个账户，创建 ${json.data?.planCount ?? 0} 条计划、${json.data?.creativeCount ?? 0} 条创意`
     );
+    if (json.data?.failures?.length) {
+      setError(`部分计划创建失败：${json.data.failures.slice(0, 3).join("；")}`);
+    }
     await load();
   };
 

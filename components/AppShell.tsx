@@ -19,6 +19,7 @@ const NAV: Array<{ group: string; items: Array<{ href: string; label: string; ic
     group: "账户与记录",
     items: [
       { href: "/accounts", label: "账户管理", icon: "wallet" },
+      { href: "/settings", label: "接入设置", icon: "settings" },
       { href: "/logs", label: "操作日志", icon: "history" },
     ],
   },
@@ -77,13 +78,13 @@ export default function AppShell({ children }: { children: ReactNode }) {
         <div className="mx-3 mb-3 rounded-xl border border-white/10 bg-white/[0.04] p-3">
           <div className="flex items-center gap-2 text-[12px] text-slate-300">
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-70" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-400" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
             </span>
-            百度营销 API · 模拟对接
+            本地运行 · 不消耗 token
           </div>
           <p className="mt-1.5 text-[11px] leading-4 text-slate-500">
-            接入真实账号后自动切换为正式环境
+            接入百度接口时只使用本机网络
           </p>
         </div>
 
@@ -105,8 +106,8 @@ export default function AppShell({ children }: { children: ReactNode }) {
               创
             </div>
             <span className="text-[14px] font-semibold">创量投放</span>
-            <span className="ml-auto rounded-full bg-amber-50 px-2 py-1 text-[10px] text-amber-600">
-              模拟对接
+            <span className="ml-auto rounded-full bg-emerald-50 px-2 py-1 text-[10px] text-emerald-600">
+              本地运行
             </span>
           </div>
           <nav className="flex gap-1 overflow-x-auto px-3 pb-2">

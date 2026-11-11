@@ -48,6 +48,10 @@ export default function AccountsPage() {
       setNotice("数据同步完成，已更新最近 7 天投放数据");
       await load();
       setTimeout(() => setNotice(""), 3000);
+    } else {
+      const json = (await res.json()) as { error?: string };
+      setNotice(json.error ?? "同步失败，请检查接入设置");
+      setTimeout(() => setNotice(""), 6000);
     }
   };
 

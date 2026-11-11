@@ -131,7 +131,7 @@ export async function POST(request: Request) {
         operator,
       });
       if (!result.ok) {
-        failures.push(`${accountName} / ${planName}`);
+        failures.push(`${accountName} / ${planName}：${result.message}`);
         continue;
       }
       planCount += 1;
